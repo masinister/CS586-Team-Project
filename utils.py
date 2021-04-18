@@ -18,8 +18,12 @@ def featurize(X_raw, device):
 def featurize_one(row):
     return np.concatenate((time_encoding(row[0]),
                            loc_encoding(row[1]),
-                           row[2:7], [row[8]], row[11:])).astype(float)
-    # TODO: ADD sin_cos angle encoding to the wind direction
+                           row[2:7],
+                           wind_encoding(row[7]),
+                           [row[8]],
+                           wind_encoding(row[9]),
+                           wind_encoding(row[10]),
+                           row[11:])).astype(float)
 
 def sin_cos(n):
     theta = 2 * np.pi * n
@@ -38,7 +42,13 @@ def time_encoding(time):
     months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     return list(sum(map(lambda t: sin_cos(t), [(d.month - 1)/ 12, (d.day - 1) / months[d.month - 1], d.weekday() / 7]), ()))
 
+def wind_encoding(dir):
+    dirs = ['E', 'ENE', 'NE', 'NNE', 'N', 'NNW', 'NW', 'WNW', 'W', 'WSW', 'SW', 'SSW', 'S', 'SSE', 'SE', 'ESE']
+    angle = dirs.index(dir) / 16 * np.pi
+    return sin_cos(angle)
+
 if __name__ == '__main__':
     X, y = load_data()
     print(X.shape, y.shape)
     print(X[0])
+    print(wind_encoding('W'))
