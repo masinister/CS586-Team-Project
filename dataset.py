@@ -18,5 +18,6 @@ class WeatherDataset(Dataset):
         return len(self.data)
 
 if __name__ == '__main__':
-    w = WeatherDataset()
-    print(len(w), w[0])
+    dataset = WeatherDataset()
+    X, y = dataset[0]
+    print(X.shape, y)
