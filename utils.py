@@ -33,11 +33,15 @@ def sin_cos(n):
     return (np.sin(theta), np.cos(theta))
 
 def loc_encoding(loc):
-    locs = np.array(['Cobar', 'CoffsHarbour', 'Moree', 'NorfolkIsland', 'Sydney', 'SydneyAirport',
-            'WaggaWagga', 'Williamtown', 'Canberra', 'Sale', 'MelbourneAirport',
-            'Melbourne', 'Mildura', 'Portland', 'Watsonia', 'Brisbane', 'Cairns',
-            'Townsville', 'MountGambier', 'Nuriootpa', 'Woomera', 'PerthAirport', 'Perth',
-            'Hobart', 'AliceSprings', 'Darwin'])
+    locs = np.array(['Albury', 'BadgerysCreek', 'Cobar', 'CoffsHarbour', 'Moree', 'Newcastle',
+                 'NorahHead', 'NorfolkIsland', 'Penrith', 'Richmond', 'Sydney', 'SydneyAirport',
+                 'WaggaWagga', 'Williamtown', 'Wollongong', 'Canberra', 'Tuggeranong',
+                 'MountGinini', 'Ballarat', 'Bendigo', 'Sale', 'MelbourneAirport', 'Melbourne',
+                 'Mildura', 'Nhil', 'Portland', 'Watsonia', 'Dartmoor', 'Brisbane', 'Cairns',
+                 'GoldCoast', 'Townsville', 'Adelaide', 'MountGambier', 'Nuriootpa', 'Woomera',
+                 'Albany', 'Witchcliffe', 'PearceRAAF', 'PerthAirport', 'Perth', 'SalmonGums',
+                 'Walpole', 'Hobart', 'Launceston', 'AliceSprings', 'Darwin', 'Katherine',
+                 'Uluru'])
     return np.where(locs == loc, 1, 0)
 
 def time_encoding(time):
